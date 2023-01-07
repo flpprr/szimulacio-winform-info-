@@ -18,7 +18,7 @@ namespace projektt
         }
 
         public static Vektor operator +(Vektor a, Vektor b) => new Vektor(a.X + b.X, a.Y + b.Y);
-        
-        
+        public static Vektor operator -(Vektor a, Vektor b) => new Vektor(a.X - b.X, a.Y - b.Y);
+
     }
 }

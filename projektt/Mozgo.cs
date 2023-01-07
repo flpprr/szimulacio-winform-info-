@@ -44,12 +44,30 @@ namespace projektt
         internal void Lépj()
         {
             this.hely += this.sebesseg;
+            
         }
         public static void Összes_léptetése(PictureBox picturebox1)
         {
             foreach (Mozgo mozgo in Mozgo.lista)
             {
                 mozgo.Lépj();
+
+                if (mozgo.hely.X + 70 >= picturebox1.Width) //70 mert a kepek 70 pixel szelesek
+                {
+                    mozgo.sebesseg.X *= -1;
+                }
+                if (mozgo.hely.Y + 70 >= picturebox1.Height) //70 mert a kepek 70 pixel magasas
+                {
+                    mozgo.sebesseg.Y *= -1;
+                }
+                if (mozgo.hely.X <= 0) //2
+                {
+                    mozgo.sebesseg.X *= -1;
+                }
+                if (mozgo.hely.Y <= 0)  //2
+                {
+                    mozgo.sebesseg.Y *= -1;
+                }
 
             }
         }
