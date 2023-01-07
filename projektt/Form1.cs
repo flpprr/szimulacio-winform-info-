@@ -12,7 +12,7 @@ namespace projektt
 {
     public partial class Form1 : Form
     {
-
+        
         Mozgo mozgo = new Mozgo(new Vektor(100, 100), new Vektor(1, 1), 30, Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\scissors3.png"));
         Mozgo mozgo2 = new Mozgo(new Vektor(400, 380), new Vektor(-1, 1), 30, Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\scissors3.png"));
         Mozgo mozgo3 = new Mozgo(new Vektor(180, 60), new Vektor(1, -1), 30, Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\scissors3.png"));

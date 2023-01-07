@@ -15,9 +15,6 @@ namespace projektt
         Vektor sebesseg;
         int tomeg;
         Image kep;
-        
-        
-        
 
         static List<Mozgo> lista = new List<Mozgo>();
         List<Vektor> elmozdulasai;
@@ -32,8 +29,7 @@ namespace projektt
             this.tomeg = tomeg;
             this.kep = kep;
             
-            
-
+           
             this.elmozdulasai = new List<Vektor>();
             Mozgo.lista.Add(this);
         }
@@ -49,7 +45,6 @@ namespace projektt
         {
             this.hely += this.sebesseg;
         }
-
         public static void Összes_léptetése(PictureBox picturebox1)
         {
             foreach (Mozgo mozgo in Mozgo.lista)
@@ -58,12 +53,10 @@ namespace projektt
 
             }
         }
-
         public void Lerajzol(Graphics g)
         {
             g.DrawImage(kep,new PointF(hely.X, hely.Y));
         }
-
         public static void Összes_lerajzolása(PictureBox picturebox1)
         {
             Size vaszonmeret = picturebox1.Size;
@@ -78,8 +71,6 @@ namespace projektt
             }
             picturebox1.Refresh();
         }
-
-
         internal static void Szimuláció(PictureBox picturebox1)
         {
             while (fut)
