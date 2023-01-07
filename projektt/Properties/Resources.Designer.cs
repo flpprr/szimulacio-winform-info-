@@ -103,9 +103,9 @@ namespace projektt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap floor {
+        internal static System.Drawing.Bitmap Greybanner_Coliseum_Night_Large_22x16_1 {
             get {
-                object obj = ResourceManager.GetObject("floor", resourceCulture);
+                object obj = ResourceManager.GetObject("Greybanner-Coliseum-Night-Large-22x16-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,19 @@ namespace projektt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Greybanner_Coliseum_Night_Large_22x16_1 {
+        internal static System.Drawing.Bitmap off {
             get {
-                object obj = ResourceManager.GetObject("Greybanner-Coliseum-Night-Large-22x16-1", resourceCulture);
+                object obj = ResourceManager.GetObject("off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap on {
+            get {
+                object obj = ResourceManager.GetObject("on", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +156,16 @@ namespace projektt.Properties {
         internal static System.Drawing.Bitmap scroll_paper_clip_art_png_favpng_egbi0hrW1WBwx86KmDDCMXDPQ {
             get {
                 object obj = ResourceManager.GetObject("scroll-paper-clip-art-png-favpng-egbi0hrW1WBwx86KmDDCMXDPQ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap x_button {
+            get {
+                object obj = ResourceManager.GetObject("x button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

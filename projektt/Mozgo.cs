@@ -36,8 +36,7 @@ namespace projektt
 
         
 
-        public static bool fut = false;
-        public static int idő = 0;
+        
 
 
 
@@ -69,6 +68,9 @@ namespace projektt
                     mozgo.sebesseg.Y *= -1;
                 }
 
+                
+
+
             }
         }
         public void Lerajzol(Graphics g)
@@ -89,23 +91,29 @@ namespace projektt
             }
             picturebox1.Refresh();
         }
-        internal static void Szimuláció(PictureBox picturebox1)
+
+        public static bool fut = false;
+        /*public static int idő = 0;*/
+        
+
+        internal static void Szimuláció(PictureBox picturebox1, Label időlabel)
         {
             while (fut)
             {
                 Thread.Sleep(20);
-                
+                /*idő++;*/
                 Mozgo.Összes_lerajzolása(picturebox1);
                 Mozgo.Összes_léptetése(picturebox1);
-                      
+                /*időlabel.Text = idő.ToString();
+                időlabel.Refresh();*/
                 Application.DoEvents();
             }
         }
 
 
+        private double Távolsága_ettől(Mozgo that) => (this.hely - that.hely).Hossz();
 
-
-
+        
 
 
 

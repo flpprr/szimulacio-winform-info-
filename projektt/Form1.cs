@@ -29,16 +29,33 @@ namespace projektt
             Mozgo.Összes_lerajzolása(pictureBox1);
 
         }
-      
-        private void button1_Click(object sender, EventArgs e)
+
+        private void circbutton1_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
             Mozgo.fut = true;
-            Mozgo.Szimuláció(pictureBox1);
+            Mozgo.Szimuláció(pictureBox1, label1);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void circbutton2_Click(object sender, EventArgs e)
         {
             Mozgo.fut = false;
+            timer1.Enabled = false;
+        }
+
+        
+
+        int i = 1;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Text = i.ToString();
+            i++;
+            
+        }
+
+        private void circbutton3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
