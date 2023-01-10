@@ -41,9 +41,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(61, 116);
+            this.pictureBox1.Location = new System.Drawing.Point(112, 141);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(982, 570);
+            this.pictureBox1.Size = new System.Drawing.Size(906, 445);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -66,10 +66,10 @@
             // 
             // circbutton1
             // 
-            this.circbutton1.BackColor = System.Drawing.Color.Transparent;
-            this.circbutton1.BackgroundImage = global::projektt.Properties.Resources.on;
+            this.circbutton1.BackColor = System.Drawing.Color.Green;
             this.circbutton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.circbutton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.circbutton1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.circbutton1.Location = new System.Drawing.Point(402, 55);
             this.circbutton1.Name = "circbutton1";
             this.circbutton1.Size = new System.Drawing.Size(40, 40);
@@ -79,8 +79,7 @@
             // 
             // circbutton2
             // 
-            this.circbutton2.BackColor = System.Drawing.Color.Transparent;
-            this.circbutton2.BackgroundImage = global::projektt.Properties.Resources.off;
+            this.circbutton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.circbutton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.circbutton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.circbutton2.ForeColor = System.Drawing.Color.Transparent;
