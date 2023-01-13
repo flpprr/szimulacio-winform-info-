@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,18 +16,19 @@ namespace projektt
         Vektor sebesseg;
         Image kep;
         Rectangle hitbox;
+        string objectfajta;
 
         static List<Mozgo> lista = new List<Mozgo>();
         
         //-----------------------------------------------------------------------
         
 
-        public Mozgo(Vektor hely, Vektor sebesseg, Image kep)
+        public Mozgo(Vektor hely, Vektor sebesseg, Image kep, string fajta)
         {
             this.hely = hely;
             this.sebesseg = sebesseg;
             this.kep = kep;
-
+            this.objectfajta = fajta;
 
             /*
             hitbox.X = (int)Math.Round(hely.X); //hitbox.X = (int)hely.X ez is mukodik lol
@@ -47,7 +49,7 @@ namespace projektt
 
         public static bool fut = false;
 
-        internal void Lépj()
+        internal void egylépés()
         {
             this.hely += this.sebesseg;
             hitbox.Y += (int)Math.Round(sebesseg.Y);        //hitbox.Y += (int)sebesseg.Y; is mukodik
@@ -73,7 +75,47 @@ namespace projektt
             {
                 egy.sebesseg.Y *= -1; egy.sebesseg.X *= -1;
                 ketto.sebesseg.Y *= -1; ketto.sebesseg.X *= -1;
-                             
+
+                
+                if (egy.objectfajta == "olló" && ketto.objectfajta == "kő")
+                {
+                    egy.objectfajta = "kő";
+                    egy.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\rock3.png");
+                }
+                else if (egy.objectfajta == "kő" && ketto.objectfajta == "olló")
+                {
+                    ketto.objectfajta = "kő";
+                    ketto.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\rock3.png");
+                }
+
+                else if (egy.objectfajta == "olló" && ketto.objectfajta == "papír")
+                {
+                    ketto.objectfajta = "olló";
+                    ketto.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\scissors3.png");
+                }
+                else if (egy.objectfajta == "papír" && ketto.objectfajta == "olló")
+                {
+                    egy.objectfajta = "olló";
+                    egy.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\scissors3.png");
+                }
+
+                else if (egy.objectfajta == "papír" && ketto.objectfajta == "kő")
+                {
+                    ketto.objectfajta = "papír";
+                    ketto.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\paper3.png");
+                }
+                else if (egy.objectfajta == "kő" && ketto.objectfajta == "papír") 
+                {
+                    egy.objectfajta = "papír";
+                    egy.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\paper3.png");
+                }
+
+                
+
+
+
+
+
             }
         }
        
@@ -81,7 +123,7 @@ namespace projektt
         {
             foreach (Mozgo mozgo in Mozgo.lista)
             {
-                mozgo.Lépj();
+                mozgo.egylépés();
 
 
                 //COLLISION A TÖBBI OBJECTTEL
@@ -115,11 +157,15 @@ namespace projektt
             }
         }
 
+
+        //Egy olló, kő, vagy papír lerajzolása
         public void Lerajzol(Graphics g)
         {
             g.DrawImage(kep,new PointF(hely.X, hely.Y));
         }
 
+
+        //Összes, ez nem változtatva eredeti kódhoz képest
         public static void Összes_lerajzolása(PictureBox picturebox1)
         {
             Size vaszonmeret = picturebox1.Size;
@@ -137,17 +183,17 @@ namespace projektt
             picturebox1.Refresh();
         }
 
+
+        
         internal static void Szimuláció(PictureBox picturebox1, Label időlabel)
         {
             while (fut)
             {
                 Thread.Sleep(20);
 
-
                 Mozgo.Összes_lerajzolása(picturebox1);
                 Mozgo.Összes_léptetése(picturebox1);
                 
-
                 Application.DoEvents();
             }
         }
