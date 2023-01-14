@@ -9,6 +9,7 @@ namespace projektt
 {
     public class Vektor
     {
+        //megváltoztattam floatre, mert csak így tudtam lerajzolni a pictureboxra 
         public float X, Y;
 
         public Vektor(float X, float Y)
@@ -18,10 +19,6 @@ namespace projektt
         }
 
         public static Vektor operator +(Vektor a, Vektor b) => new Vektor(a.X + b.X, a.Y + b.Y);
-        public static Vektor operator -(Vektor a, Vektor b) => new Vektor(a.X - b.X, a.Y - b.Y);
-
-
-
-        public double Hossz() => Math.Sqrt(X * X + Y * Y);
+        
     }
 }

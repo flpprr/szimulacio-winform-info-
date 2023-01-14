@@ -16,13 +16,13 @@ namespace projektt
         Vektor sebesseg;
         Image kep;
         Rectangle hitbox;
-        string objectfajta;
+        string objectfajta; //kő/papír/olló
 
         static List<Mozgo> lista = new List<Mozgo>();
         
         //-----------------------------------------------------------------------
         
-
+        
         public Mozgo(Vektor hely, Vektor sebesseg, Image kep, string fajta)
         {
             this.hely = hely;
@@ -35,6 +35,7 @@ namespace projektt
             hitbox.Y = (int)hely.Y;   
             hitbox.Width = kep.Width & hitbox.Height = kep.Height */
 
+            //hitbox deklarásás
             hitbox.Size = new Size(kep.Width, kep.Height); 
             hitbox.Location = new Point((int)Math.Round(hely.X), (int)Math.Round(hely.Y));
             
@@ -51,7 +52,10 @@ namespace projektt
 
         internal void egylépés()
         {
+            //maga a class object léptetése
             this.hely += this.sebesseg;
+
+            //a Rectangleje/hitboxa léptetése vele
             hitbox.Y += (int)Math.Round(sebesseg.Y);        //hitbox.Y += (int)sebesseg.Y; is mukodik
             hitbox.X += (int)Math.Round(sebesseg.X);
 
@@ -68,6 +72,8 @@ namespace projektt
 
         }
 
+
+
         public static void CollisionDetec(Mozgo egy, Mozgo ketto)
         {
             
@@ -76,7 +82,7 @@ namespace projektt
                 egy.sebesseg.Y *= -1; egy.sebesseg.X *= -1;
                 ketto.sebesseg.Y *= -1; ketto.sebesseg.X *= -1;
 
-                
+                //Ha kő találkozik ollóval és fordítva
                 if (egy.objectfajta == "olló" && ketto.objectfajta == "kő")
                 {
                     egy.objectfajta = "kő";
@@ -88,6 +94,7 @@ namespace projektt
                     ketto.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\rock3.png");
                 }
 
+                //Ha olló találkozik papírral és fordítva
                 else if (egy.objectfajta == "olló" && ketto.objectfajta == "papír")
                 {
                     ketto.objectfajta = "olló";
@@ -99,6 +106,7 @@ namespace projektt
                     egy.kep = Image.FromFile("C:\\Users\\The User One\\Desktop\\projekt\\scissors3.png");
                 }
 
+                //Ha papír találkozik kővel és fordítva
                 else if (egy.objectfajta == "papír" && ketto.objectfajta == "kő")
                 {
                     ketto.objectfajta = "papír";
@@ -119,6 +127,8 @@ namespace projektt
             }
         }
        
+
+        //Léptetés, collision, győztes megnézése
         public static void Összes_léptetése(PictureBox picturebox1)
         {
             foreach (Mozgo mozgo in Mozgo.lista)
@@ -134,18 +144,22 @@ namespace projektt
 
 
                 //COLLISION A FALLAL
-                if (mozgo.hely.X + 70 >= picturebox1.Width) //70 mert a kepek 70 pixel szelesek
+                //jobb fal
+                if (mozgo.hely.X + 70 >= picturebox1.Width) //70 mert a kepek 70 pixel szelesek, valamiért a mozgo.kep.Width nem mukodik
                 {
                     mozgo.sebesseg.X *= -1;
                 }
-                if (mozgo.hely.Y + 70 >= picturebox1.Height) //70 mert a kepek 70 pixel magasak
+                //lenti fal
+                if (mozgo.hely.Y + 70 >= picturebox1.Height) //70 mert a kepek 70 pixel magasak, valamiért a mozgo.kep.Height nem mukodik
                 {
                     mozgo.sebesseg.Y *= -1;
                 }
+                //bal fal
                 if (mozgo.hely.X <= 0) //2
                 {
                     mozgo.sebesseg.X *= -1;
                 }
+                //fenti fal
                 if (mozgo.hely.Y <= 0)  //2
                 {
                     mozgo.sebesseg.Y *= -1;
@@ -159,6 +173,7 @@ namespace projektt
 
 
         //Egy olló, kő, vagy papír lerajzolása
+        //Itt kellett hogy megváltozassam floatra a vektort
         public void Lerajzol(Graphics g)
         {
             g.DrawImage(kep,new PointF(hely.X, hely.Y));
@@ -183,9 +198,49 @@ namespace projektt
             picturebox1.Refresh();
         }
 
+        public static void Wincheck(Label label)
+        {
+            int ollowin = 0;
+            int kowin = 0;
+            int papirwin = 0;
+
+            foreach (Mozgo item in lista)
+            {
+                if (item.objectfajta == "papír")
+                {
+                    papirwin++;
+
+                }
+                if (item.objectfajta == "kő")
+                {
+                    kowin++;
+                }
+                if (item.objectfajta == "olló")
+                {
+                    ollowin++;
+                }
+
+            }
+
+            if (ollowin == lista.Count())
+            {
+                label.Enabled = true;
+                label.Text = "Nyert az olló";
+            }
+            if (kowin == lista.Count())
+            {
+                label.Enabled = true;
+                label.Text = "Nyert az kő";
+            }
+            if (papirwin == lista.Count())
+            {
+                label.Enabled = true;
+                label.Text = "Nyert az papír"; 
+            }
+        }
 
         
-        internal static void Szimuláció(PictureBox picturebox1, Label időlabel)
+        internal static void Szimuláció(PictureBox picturebox1, Label időlabel, Label eredmény)
         {
             while (fut)
             {
@@ -193,7 +248,7 @@ namespace projektt
 
                 Mozgo.Összes_lerajzolása(picturebox1);
                 Mozgo.Összes_léptetése(picturebox1);
-                
+                Mozgo.Wincheck(eredmény);
                 Application.DoEvents();
             }
         }
